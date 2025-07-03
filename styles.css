@@ -1,0 +1,404 @@
+/*
+  Style sheet untuk website Rumah Dijual
+  --------------------------------------
+
+  /* Cara mengubah font:
+     - Ubah properti font-family di bawah ini (body selector).
+     - Contoh: Ganti 'Poppins' dengan 'Inter' atau 'Roboto'.
+     - Jangan lupa update link Google Fonts di index.html.
+
+  /* Cara mengubah warna utama (background, teks, aksen):
+     - Ubah variabel :root, misal --color-bg, --color-text-primary, --color-accent.
+
+  /* Cara mengubah border-radius:
+     - Ubah nilai --radius untuk merubah kelengkungan elemen seperti tombol dan kartu.
+
+  /* Cara mengubah bayangan elemen:
+     - Ubah variabel --shadow-light.
+
+  /* Untuk mengubah gambar rumah:
+     - Ganti atribut src di tag <img> pada file HTML (lihat komentar di HTML).
+*/
+
+/* Variabel tema dan warna utama */
+:root {
+  --color-bg: #ffffff;               /* Warna latar belakang halaman */
+  --color-text-primary: #394663;     /* Warna teks utama (judul, headline) */
+  --color-text-secondary: #53617e;   /* Warna teks deskripsi atau paragraf */
+  --color-accent: #000000;           /* Warna aksen (tombol, link) */
+  --color-accent-hover: #333333;     /* Warna aksen saat hover/fokus */
+  --color-card-bg: #e4e4e4;          /* Warna latar belakang kartu */
+  --radius: 0.75rem;                 /* Radius sudut komponen */
+  --shadow-light: 0 2px 8px rgba(0,0,0,0.07); /* Bayangan lembut */
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Durasi dan easing transisi */
+  --max-width: 1200px;               /* Lebar maksimal container utama */
+}
+
+/* Reset dan dasar */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--color-bg);                      /* Latar belakang putih */
+  color: var(--color-text-secondary);               /* Warna teks abu lembut */
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  /* Font modern */
+  font-weight: 400;                                  /* Berat font normal */
+  font-size: 18px;                                   /* Ukuran font nyaman dibaca */
+  line-height: 1.6;                                  /* Jarak antar baris */
+  scroll-behavior: smooth;                           /* Scroll halus ke anchor */
+}
+a {
+  color: var(--color-accent);                        /* Warna link utama */
+  text-decoration: none;                             /* Hilangkan underline */
+  transition: color var(--transition);
+}
+a:hover,
+a:focus {
+  color: var(--color-accent-hover);                  /* Warna saat hover */
+  outline: none;
+}
+main {
+  max-width: var(--max-width);                       /* Batasi lebar konten utama */
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;                           /* Padding atas dan bawah */
+}
+
+/* Header */
+header {
+  position: sticky;                                  /* Header tetap di atas saat scroll */
+  top: 0;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-light);                   /* Bayangan halus di bawah header */
+  z-index: 1000;
+  font-weight: 600;
+}
+.nav-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;                                     /* Flexbox untuk layout */
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
+.logo {
+  font-size: 1.5rem;                                 /* Ukuran logo */
+  font-weight: 800;
+  color: var(--color-accent);
+  user-select: none;
+  cursor: default;
+}
+nav ul {
+  list-style: none;                                  /* Hilangkan bullet */
+  display: flex;
+  gap: 2.5rem;                                       /* Jarak antar menu */
+  margin: 0;
+  padding: 0;
+  font-weight: 600;                                  /* Tebal tulisan menu */
+  font-size: 1rem;
+}
+nav a {
+  padding: 0.5rem 0;
+  position: relative;
+  display: inline-block;
+}
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: var(--color-accent);
+  transition: width var(--transition);
+  border-radius: 3px;
+}
+nav a:hover::after,
+nav a:focus::after {
+  width: 100%;                                      /* Underline meluas penuh saat hover */
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding-bottom: 5rem;
+  user-select: none;
+  max-width: 720px;                                 /* Lebar hero maksimal */
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero h1 {
+  font-size: 4rem;                                  /* Headline besar dan tebal */
+  font-weight: 800;
+  margin: 0 0 1rem;
+  color: var(--color-text-primary);
+  line-height: 1.1;
+}
+.hero p {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 3rem;
+}
+.btn-primary {
+  background-color: var(--color-accent);           /* Tombol hitam */
+  color: #fff;
+  font-weight: 700;
+  padding: 1rem 3rem;
+  border: none;
+  border-radius: var(--radius);                     /* Radius tombol */
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);          /* Bayangan tombol */
+  transition: background-color var(--transition), transform 0.25s ease;
+  user-select: none;
+  display: inline-block;
+  text-decoration: none;
+  transition-property: background-color, transform, box-shadow, color;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--color-accent-hover);     /* Warna hover */
+  transform: scale(1.05);                           /* Membesar sedikit saat hover */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  outline: none;
+  color: #fff;
+}
+.button {
+  background-color: var(--color-accent);  /* Tombol hitam */
+  color: #fff;
+  font-weight: 700;
+  padding: 1rem 2rem;                     /* Ukuran tombol */
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);   /* Perbaikan nilai box-shadow */
+  transition: background-color var(--transition), transform 0.25s ease;
+  user-select: none;
+  display: inline-block;                  /* KUNCI: agar lebar mengikuti isi */
+  text-decoration: none;
+  width: fit-content;                     /* KUNCI: agar hanya sepanjang teks */
+}
+
+.button:hover,
+.button:focus {
+  background-color: var(--color-accent-hover);
+  transform: scale(1.05);                 /* Jangan gunakan `auto`, gunakan angka */
+  box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+  outline: none;
+  color: #fff;
+}
+
+/* Featured Listings Section */
+section#listings {
+  padding-top: 4rem;
+  padding-bottom: 6rem;
+}
+section#listings h2 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Grid responsif */
+  gap: 2.5rem;
+}
+.card {
+  background: var(--color-card-bg);                 /* Background kartu */
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);                   /* Bayangan kartu */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+}
+.card:hover,
+.card:focus-within {
+  transform: translateY(-6px);                      /* Hover naik sedikit */
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+  border-color: var(--color-accent);
+  outline: none;
+}
+.card img {
+  width: auto;
+  height: autos;                                    /* Tinggi gambar seragam */
+  object-fit: cover;                                /* Crop otomatis agar pas kotak */
+  user-select: none;
+}
+.card-content {
+  padding: 4rem 2rem 2rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.card-title {
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin: 0 0 0.75rem;
+  color: var(--color-text-primary);
+}
+.card-price {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.card-desc {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  flex-grow: 1;
+  line-height: 1.5;
+}
+
+/* Bantuan Section */
+section#bantuan {
+  background: var(--color-card-bg);
+  border-radius: var(--radius);
+  padding: 4rem 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto 5rem;
+  box-shadow: var(--shadow-light);
+  user-select: none;
+}
+section#bantuan h2 {
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  text-align: center;
+  color: var(--color-text-primary);
+}
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2rem;
+}
+.faq-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-light);
+  padding: 5rem 5rem;
+  user-select: none;
+  transition: box-shadow 0.3s ease;
+  border: 1px solid transparent;
+}
+.faq-card:hover,
+.faq-card:focus-within {
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.12);
+  border-color: var(--color-accent);
+  outline: none;
+}
+.faq-question {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--color-text-primary);
+  font-size: 1.2rem;
+}
+.faq-answer {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.contact {
+    background-color: white;
+    max-width: 600px;
+    margin: 40px auto 60px;
+    padding: 30px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.contact h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.contact form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.contact form input,
+.contact form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+.contact form button {
+    background-color: #007bff;
+    border: none;
+    padding: 12px 25px;
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.contact form button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Footer */
+footer {
+  text-align: left;
+  padding: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  user-select: none;
+  border-top: 1px solid #e5e7eb;
+  background-color: var(--color-bg);
+  margin-top: auto;
+}
+
+/* Supaya copyright di tengah & di bawah */
+footer .copyright {
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+}
+
+main {
+  flex: 1;
+}
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+  .btn-primary {
+    padding: 0.85rem 2.5rem;
+    font-size: 1.15rem;
+  }
+  main {
+    padding: 3rem 1.5rem 5rem;
+  }
+  section#bantuan {
+    padding: 3rem 1.5rem;
+  }
+}
